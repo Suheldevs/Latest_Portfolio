@@ -1,45 +1,50 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
+
+// Free screenshot service (WordPress mShots) — renders the live site as an image.
+// First-ever request shows a loading placeholder until the screenshot is cached.
+const liveScreenshot = (url: string) =>
+  `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=800&h=450`;
 
 const projects = [
   {
-    title: "HRMS System",
-    description: "Employee and Admin portals with role-based access, attendance tracking, leave management, payroll, and mobile check-in/check-out features.",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
+    title: "HRMS (HR Management System)",
+    description: "Employee and Admin portals with role-based access, onboarding, attendance tracking, leave approvals, payroll, mobile check-in/check-out, and salary slip download.",
+    tags: ["React", "Node.js", "Express", "MongoDB"],
     liveUrl: "https://hrms-demo.netlify.app/",
     githubUrl: "#",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
   },
   {
-    title: "A-Mad Electricals",
-    description: "Responsive e-commerce platform with admin panel for product management, categories, blogs, and inquiry handling.",
-    tags: ["React", "Tailwind", "Node.js", "MongoDB"],
-    liveUrl: "https://a-mad-electricals.netlify.app/",
+    title: "Quippy Lab — AI Language Learning",
+    description: "AI-powered language learning platform with interactive quizzes and gamified lessons. React Native app with online live classes, school management, and real-time progress tracking.",
+    tags: ["React Native", "Expo", "Node.js", "AI"],
+    liveUrl: "",
     githubUrl: "#",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+    image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&q=80"
   },
   {
     title: "DSS Website & CRM",
-    description: "Dynamic website with lead generation and comprehensive CRM platform with modules for lead management, recce, HR, and asset management.",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
+    description: "Dynamic website with cookie-based lead generation, product showcases, blogs, and email subscriptions — plus a CRM with lead capture & assignment, recce, HR, and digital asset management.",
+    tags: ["React", "Node.js", "Express", "MongoDB"],
     liveUrl: "https://dss-crm.netlify.app/",
     githubUrl: "#",
     image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80"
   },
   {
     title: "Shanya Scans",
-    description: "Complete platform for online medical test and scan bookings with role-based admin panel and automated reporting system.",
+    description: "Independently developed platform for online medical test and scan bookings with a role-based admin panel for tests, pricing, and appointments, plus automated result reporting.",
     tags: ["React", "Node.js", "MongoDB", "Firebase"],
-    liveUrl: "https://shanya-scans.netlify.app/",
+    liveUrl: "https://www.shanyascans.com/",
     githubUrl: "#",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80"
   },
   {
-    title: "Lancet Architect",
-    description: "Professional architecture portfolio website showcasing projects and design services.",
-    tags: ["React", "Tailwind", "GSAP"],
-    liveUrl: "https://lancetarchitect.com/",
+    title: "Start Motors",
+    description: "Business website for an automotive dealership with vehicle showcases and inquiry handling.",
+    tags: ["React", "Tailwind"],
+    liveUrl: "https://www.startmotors.co.in/",
     githubUrl: "#",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80"
+    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80"
   },
   {
     title: "Xpress Tour & Travels",
@@ -52,66 +57,91 @@ const projects = [
 ];
 
 const Portfolio = () => {
+  // Feed the cursor position to the CSS spotlight (--mx / --my)
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty("--my", `${e.clientY - rect.top}px`);
+  };
+
   return (
     <section className="animate-fade-in">
-      <h2 className="text-3xl font-bold mb-8">Portfolio</h2>
+      <h2 className="text-3xl font-bold mb-5">Portfolio</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {projects.map((project, index) => (
-          <div
+          <article
             key={index}
-            className="group relative bg-secondary border border-border rounded-2xl overflow-hidden hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
-            style={{ animationDelay: `${index * 100}ms` }}
+            onMouseMove={handleMouseMove}
+            className="spotlight-card group relative bg-secondary/60 backdrop-blur-sm border border-border rounded-2xl overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-primary/15 animate-card-in"
+            style={{ animationDelay: `${index * 120}ms` }}
           >
+            {/* Screenshot */}
             <div className="relative h-48 overflow-hidden">
               <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src={project.liveUrl ? liveScreenshot(project.liveUrl) : project.image}
+                alt={`Screenshot of ${project.title}`}
+                loading="lazy"
+                onError={(e) => {
+                  // Fall back to the static image if the screenshot fails
+                  e.currentTarget.src = project.image;
+                }}
+                className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-primary text-primary-foreground rounded-lg flex items-center justify-center hover:scale-110 transition-transform"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <ExternalLink className="w-5 h-5" />
-                </a>
+
+              {/* Permanent bottom fade for depth, deepens on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-transparent to-transparent transition-opacity duration-500 group-hover:from-secondary"></div>
+
+              {/* Frosted action buttons slide up from the bottom on hover */}
+              <div className="absolute inset-x-4 bottom-4 flex gap-2 translate-y-14 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 h-10 rounded-lg bg-primary/90 text-primary-foreground backdrop-blur-md flex items-center justify-center gap-2 text-sm font-medium hover:bg-primary transition-colors"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Live Demo
+                  </a>
+                )}
                 <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-background text-foreground rounded-lg flex items-center justify-center hover:scale-110 transition-transform"
-                  onClick={(e) => e.stopPropagation()}
+                  className="h-10 px-4 rounded-lg bg-background/70 text-foreground backdrop-blur-md border border-border flex items-center justify-center gap-2 text-sm font-medium hover:bg-background transition-colors"
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-4 h-4" />
+                  Code
                 </a>
               </div>
             </div>
 
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+            {/* Content */}
+            <div className="relative p-5">
+              <div className="flex items-start justify-between gap-2 mb-3">
+                <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">
+                  {project.title}
+                </h3>
+                <ArrowUpRight className="w-5 h-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </div>
+
+              <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-2">
                 {project.description}
               </p>
+
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="px-3 py-1 bg-background text-xs rounded-lg text-muted-foreground"
+                    className="px-3 py-1 text-xs rounded-full border border-border bg-background/50 text-muted-foreground transition-colors duration-300 group-hover:border-primary/30 group-hover:text-foreground"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>

@@ -2,10 +2,11 @@ import { Mail, MapPin, Phone, Github, Linkedin, ExternalLink } from "lucide-reac
 
 const Sidebar = () => {
   return (
-    <aside className="w-full lg:w-[350px] bg-card border border-border rounded-2xl p-8 lg:sticky lg:top-8 h-fit">
-      <div className="flex flex-col items-center">
+    <aside className="w-full lg:w-[330px] bg-card border border-border rounded-2xl p-5 lg:p-6 lg:h-full lg:flex lg:flex-col lg:overflow-y-auto custom-scrollbar">
+      {/* my-auto centers the content vertically; collapses gracefully if it overflows */}
+      <div className="flex flex-col items-center lg:my-auto">
         {/* Avatar */}
-        <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 border-4 border-border overflow-hidden">
+        <div className="w-28 h-28 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-4 border-4 border-border overflow-hidden">
           <div className="w-full h-full bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center">
             <svg viewBox="0 0 200 200" className="w-24 h-24">
               <circle cx="100" cy="80" r="35" fill="hsl(var(--primary))" opacity="0.8"/>
@@ -15,16 +16,16 @@ const Sidebar = () => {
         </div>
 
         {/* Name & Title */}
-        <h1 className="text-2xl font-bold text-foreground mb-2">Mohd Suhel</h1>
+        <h1 className="font-cursive text-4xl font-bold text-foreground mb-2">Mohd Suhel</h1>
         <p className="text-sm bg-secondary px-4 py-2 rounded-lg text-muted-foreground">
           Full Stack Developer
         </p>
 
         {/* Divider */}
-        <div className="w-full h-px bg-border my-6"></div>
+        <div className="w-full h-px bg-border my-4"></div>
 
         {/* Contact Info */}
-        <div className="w-full space-y-4">
+        <div className="w-full space-y-3">
           <div className="flex items-start gap-4">
             <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center flex-shrink-0">
               <Mail className="w-5 h-5 text-primary" />
@@ -67,22 +68,24 @@ const Sidebar = () => {
         </div>
 
         {/* Divider */}
-        <div className="w-full h-px bg-border my-6"></div>
+        <div className="w-full h-px bg-border my-4"></div>
 
         {/* Social Links */}
         <div className="flex gap-3">
           <a
-            href="https://github.com/mohdSuhel"
+            href="https://github.com/suheldevs"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="GitHub profile"
             className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center justify-center"
           >
             <Github className="w-5 h-5" />
           </a>
           <a
-            href="https://www.linkedin.com/in/suheldevs"
+            href="https://www.linkedin.com/in/mohdsuhel"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
             className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center justify-center"
           >
             <Linkedin className="w-5 h-5" />

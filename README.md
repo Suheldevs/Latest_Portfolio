@@ -1,97 +1,49 @@
-# 💼 Mohd Suhel — Portfolio Website
+# Mohd Suhel — Portfolio
 
-### Live Demo
-🔗 [https://mohdsuhel.netlify.app/](https://mohdsuhel.netlify.app/)
+Personal portfolio website of **Mohd Suhel**, a Full Stack Developer from Lucknow, India.
 
----
+**Live:** [https://mohdsuhel.netlify.app/](https://mohdsuhel.netlify.app/)
 
-## 👋 About Me
-I’m **Mohd Suhel**, a passionate **Full Stack MERN Developer** from Lucknow, India.  
-Currently working at **Code Crafter Web Solutions**, I specialize in creating dynamic and scalable web applications with a strong focus on clean UI and efficient backend logic.
+## About
 
-- 📍 Location: Lucknow, India  
-- 📧 Email: [mohdsuhel.dev@gmail.com](mailto:mohdsuhel.dev@gmail.com)  
-- 💻 GitHub: [github.com/Suheldevs](https://github.com/Suheldevs)  
-- 🔗 LinkedIn: [linkedin.com/in/mohd-suhel-4b2072257](https://www.linkedin.com/in/mohd-suhel-4b2072257)
+Software developer working across the stack — React.js, Next.js, and React Native on the front end; Node.js, Express, and MongoDB behind it. Currently an Associate Software Engineer at Jamtech Technologies Pvt Ltd, with growing expertise in AI-integrated development.
 
----
+- 📧 [mohdsuhel.dev@gmail.com](mailto:mohdsuhel.dev@gmail.com)
+- 💻 [github.com/suheldevs](https://github.com/suheldevs)
+- 🔗 [linkedin.com/in/mohdsuhel](https://www.linkedin.com/in/mohdsuhel)
 
-## 🧠 Technical Skills
+## Features
 
-**Languages:** C, JavaScript, Python, OOP  
-**Frontend:** ReactJS, Tailwind CSS, GSAP, Redux Toolkit  
-**Backend:** Node.js, Express.js, RESTful APIs, Socket.io, MongoDB  
-**Tools:** GitHub, Postman, RTK Query, Firebase, Chart.js, Razorpay, Google Console
+- **100vh app-style layout** — sidebar profile card + tabbed content panel with internal scrolling on desktop, natural flow on mobile
+- **Light/dark theme** with a toggle (persisted via `next-themes`), dark-orange primary on Vercel/Linear-style neutrals
+- **Interactive dot-grid background** — canvas dots that displace around the cursor and spring back
+- **Live project previews** — cards show real screenshots of deployed sites via the mShots screenshot service
+- **Spotlight cards** — cursor-tracking border glow on project, resume, and skill cards
+- **Working contact form** — Web3Forms delivery with react-hook-form + zod validation
+- **SEO** — canonical URL, JSON-LD Person schema, sitemap, per-section titles
+- **Accessible** — ARIA tabs with arrow-key navigation, `prefers-reduced-motion` support
 
----
+## Tech Stack
 
-## 🚀 Featured Projects
+- **Framework:** React 18 + TypeScript + Vite
+- **Styling:** Tailwind CSS + shadcn/ui (Radix primitives)
+- **Forms:** react-hook-form + zod
+- **Fonts:** Inter (body) + Caveat (accents)
+- **Analytics:** Google Analytics 4
+- **Deployment:** Netlify
 
-### 🧩 HRMS (Human Resource Management System)
-A full-featured HR platform with Admin and Employee panels.
-- Attendance tracking, leave management, payroll, and notifications.
-- Built with MERN stack and Firebase for cloud services.  
-🔗 [Live Demo](https://hrms-demo.netlify.app/) | [Source Code](https://github.com/Suheldevs/HRMS)
+## Development
 
----
-
-### ⚡ A-Mad Electricals
-Admin panel and website for electrical services and products.
-- Dynamic content management system for products, blogs, and jobs.
-- Optimized responsive UI with Tailwind and React.  
-🔗 [Live Demo](https://amadelectricals.com/)
-
----
-
-### 🧱 DSS Website & CRM
-Corporate website integrated with CRM system.
-- Lead management, product showcase, and automated email system.
-- Developed using React, Node.js, MongoDB.  
-🔗 [Live Demo](https://dss-web.netlify.app/)
-
----
-
-### 🏥 Shanya Scans
-Online platform for medical test and scan booking.
-- Role-based admin panel for test management and reporting automation.  
-🔗 [Live Demo](https://www.shanyascans.com/)
-
----
-
-## 🧰 Other Works
-- [lancetarchitect.com](https://lancetarchitect.com/)
-- [xpresstourtravels.com](https://xpresstourtravels.com/)
-- [batohicaterers.com](https://batohicaterers.com/)
-- [hope-hospital-demo.netlify.app](https://hope-hospital-demo.netlify.app/)
-- [ashirwadvastuastro.com](https://ashirwadvastuastro.com/)
-- [agarwal-associates.netlify.app](https://agarwal-associates.netlify.app/)
-- [drshashikanturology.com](https://drshashikanturology.com/)
-
----
-
-## 🎓 Education
-**Bachelor of Computer Science & Engineering** — G.C.R.G. Group of Institutions, Lucknow  
-**Diploma in Computer Science** — Jawahar Lal Nehru Polytechnic, Barabanki
-
----
-
-## 🧾 Certifications
-- Complete Web Development Bootcamp — *Angela Yu, Udemy*  
-- MERN Stack Internship — *Digicoders Pvt Ltd, Lucknow*
-
----
-
-## ⚙️ Tech Stack Used (for this portfolio)
-- **Frontend:** React.js + Tailwind CSS  
-- **Animations:** Framer Motion / GSAP  
-- **Deployment:** Netlify  
-- **Version Control:** Git + GitHub  
-
----
-
-## 🧭 How to Run Locally
 ```bash
-git clone https://github.com/Suheldevs/portfolio.git
-cd portfolio
 npm install
-npm run dev
+npm run dev      # start dev server
+npm run build    # production build
+npm run preview  # preview the build
+```
+
+## Configuration
+
+Two placeholders need real values before deploying:
+
+1. **Contact form:** replace `WEB3FORMS_ACCESS_KEY` in `src/components/sections/Contact.tsx` with your key from [web3forms.com](https://web3forms.com)
+2. **Analytics:** replace `G-XXXXXXXXXX` (both occurrences) in `index.html` with your GA4 Measurement ID
