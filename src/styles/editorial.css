@@ -1,0 +1,215 @@
+/* ============================================================================
+   Editorial portfolio theme  —  scoped to <html class="editorial">
+   ----------------------------------------------------------------------------
+   The old portfolio at /old keeps its own dark shadcn theme. Home.tsx adds the
+   `editorial` class to <html> on mount and removes it on unmount, so nothing
+   here leaks into that route. Deliberately NOT inside @layer base: the old
+   theme's tokens live in that layer, and unlayered rules always beat layered
+   ones regardless of specificity.
+   ========================================================================== */
+
+html.editorial {
+  /* Warm-minimal, print-inspired palette */
+  --paper: #F3EEE5;
+  --paper-2: #EBE4D7;
+  --ink: #1A1815;
+  --ink-soft: #5A544B;
+  --ink-faint: #8A8378;
+  --rule: #D9D1C2;
+  --accent: oklch(0.58 0.10 40);
+  --accent-soft: oklch(0.92 0.03 55);
+  --sage: oklch(0.55 0.05 145);
+
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --maxw: 1280px;
+  --gutter: clamp(20px, 4vw, 56px);
+
+  /* shadcn shims — the toaster and tooltip render on this page and read these.
+     Kept as HSL triplets because those primitives wrap them in hsl(). */
+  --background: 40 30% 93%;
+  --foreground: 30 10% 10%;
+  --muted: 36 22% 87%;
+  --muted-foreground: 30 9% 35%;
+  --popover: 40 30% 93%;
+  --popover-foreground: 30 10% 10%;
+  --card: 40 30% 93%;
+  --card-foreground: 30 10% 10%;
+  --border: 36 24% 80%;
+  --input: 36 24% 80%;
+  --primary: 30 10% 10%;
+  --primary-foreground: 40 30% 93%;
+  --secondary: 36 22% 87%;
+  --secondary-foreground: 30 10% 10%;
+  --accent-foreground: 30 10% 10%;
+  --destructive: 0 60% 45%;
+  --destructive-foreground: 40 30% 93%;
+  --ring: 30 10% 10%;
+  --radius: 0;
+
+  scroll-behavior: smooth;
+}
+
+html.editorial body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  font-feature-settings: "ss01", "ss02";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html.editorial ::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+html.editorial a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Grain overlay — gives the paper feel */
+html.editorial body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    radial-gradient(rgba(26, 24, 21, 0.035) 1px, transparent 1px),
+    radial-gradient(rgba(26, 24, 21, 0.025) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+html.editorial #root {
+  position: relative;
+  z-index: 2;
+}
+
+html.editorial .mono {
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+
+html.editorial .serif {
+  font-family: var(--serif);
+}
+
+html.editorial .caps {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+}
+
+html.editorial .hr {
+  height: 1px;
+  background: var(--rule);
+  border: 0;
+}
+
+html.editorial .hr-ink {
+  height: 1px;
+  background: var(--ink);
+  border: 0;
+}
+
+html.editorial .container-p {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+html.editorial section {
+  scroll-margin-top: 96px;
+}
+
+html.editorial :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+html.editorial .btn-p {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+html.editorial .btn-p:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+}
+
+html.editorial .btn-p.ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+html.editorial .btn-p.ghost:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* Standalone text links render 16–20px tall — below the 24×24 minimum for a
+   touch target. This extends the clickable region with an invisible overlay
+   rather than padding, so nothing moves and the rule underlines stay put. */
+html.editorial .tap-pad {
+  position: relative;
+}
+
+html.editorial .tap-pad::after {
+  content: "";
+  position: absolute;
+  /* Vertical only — these links are already 100px+ wide, and a negative
+     horizontal inset would widen the scroll area near the viewport edge. */
+  inset: -11px 0;
+}
+
+html.editorial .link-u {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+html.editorial .link-u:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  html.editorial body {
+    font-size: 15px;
+  }
+}
+
+@keyframes projFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
