@@ -170,7 +170,7 @@ export default function SkillsSection() {
                 className="edu-row"
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "auto 1fr auto",
+                  gridTemplateColumns: "110px 1fr auto",
                   gap: 24,
                   alignItems: "baseline",
                   padding: "22px 0",
@@ -193,7 +193,7 @@ export default function SkillsSection() {
               className="edu-row"
               style={{
                 display: "grid",
-                gridTemplateColumns: "auto 1fr auto",
+                gridTemplateColumns: "110px 1fr auto",
                 gap: 24,
                 alignItems: "baseline",
                 padding: "22px 0",

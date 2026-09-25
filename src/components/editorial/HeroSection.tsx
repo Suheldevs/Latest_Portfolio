@@ -1,4 +1,4 @@
-import { scrollTo } from "@/components/editorial/Navigation";
+import { scrollTo } from "@/lib/scroll";
 
 const LEDGER = [
   { n: "2+", label: "Years shipping production" },
@@ -7,8 +7,7 @@ const LEDGER = [
   { n: "8", label: "Live client sites" },
 ];
 
-const RESUME_URL =
-  "https://drive.google.com/file/d/1_-uaMxN4XP4evy416qIrA0HlUv5YKWti/view?usp=sharing";
+const RESUME_URL = "/Mohd_Suhel_Resume.pdf";
 
 export default function HeroSection() {
   return (
@@ -49,7 +48,7 @@ export default function HeroSection() {
                 verticalAlign: 1,
               }}
             />
-            Open to new work · Sept 2026
+            Open to new work · April 2026
           </div>
         </div>
 

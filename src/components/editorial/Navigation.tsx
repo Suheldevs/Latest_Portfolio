@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { scrollTo } from "@/lib/scroll";
 
 const NAV_ITEMS = [
   { id: "work", label: "Work" },
@@ -7,17 +8,6 @@ const NAV_ITEMS = [
   { id: "skills", label: "Craft" },
   { id: "contact", label: "Contact" },
 ];
-
-function scrollTo(id: string) {
-  if (id === "top") {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    return;
-  }
-  const el = document.getElementById(id);
-  if (!el) return;
-  const y = el.getBoundingClientRect().top + window.scrollY - 72;
-  window.scrollTo({ top: y, behavior: "smooth" });
-}
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -165,4 +155,3 @@ export default function Navigation() {
   );
 }
 
-export { scrollTo };

@@ -136,20 +136,19 @@ const PROJECTS: Project[] = [
       "Payroll management with salary-slip generation and download.",
     ],
     stack: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT Auth", "Tailwind"],
-    links: {
-      live: "https://hrms-demo.netlify.app/",
-      repo: "https://github.com/Suheldevs/HRMS",
-    },
+    links: { live: "https://hrms-demo.netlify.app/" },
   },
 ];
 
 // Client sites delivered alongside the products.
-const OTHER_PROJECTS: Array<{ name: string; kind: string; url: string }> = [
+// A site without a url was delivered but is no longer reachable (client let the
+// domain or certificate lapse), so it is listed without a dead link.
+const OTHER_PROJECTS: Array<{ name: string; kind: string; url?: string }> = [
   { name: "Adv. Ashok Kumar", kind: "Legal practice", url: "https://adv-ashok-kumar.netlify.app/" },
   { name: "Xpress Tour & Travels", kind: "Travel", url: "https://xpresstourtravels.com/" },
-  { name: "Batohi Caterers", kind: "Catering", url: "https://batohicaterers.com/" },
+  { name: "Batohi Caterers", kind: "Catering" },
   { name: "Hope Hospital", kind: "Healthcare", url: "https://hope-hospital-demo.netlify.app/" },
-  { name: "Ashirwad Vastu Astro", kind: "Consultancy", url: "https://ashirwadvastuastro.com/" },
+  { name: "Ashirwad Vastu Astro", kind: "Consultancy" },
   { name: "Agarwal & Associates", kind: "Professional services", url: "https://agarwal-associates.netlify.app/" },
   { name: "Dr Shashikant Urology", kind: "Medical practice", url: "https://drshashikanturology.com/" },
   { name: "Star Motors", kind: "Automotive", url: "https://www.starmotors.co.in/" },
@@ -315,24 +314,35 @@ export default function ProjectsSection() {
             }}
           >
             <h3 className="serif" style={{ margin: 0, fontSize: "clamp(28px, 3.4vw, 40px)", fontWeight: 300 }}>
-              Client sites, <span style={{ fontStyle: "italic" }}>live today</span>
+              Client sites, <span style={{ fontStyle: "italic" }}>delivered</span>
             </h3>
             <div className="mono caps" style={{ color: "var(--ink-soft)" }}>
               {OTHER_PROJECTS.length} sites · React & Next.js · 2024–25
             </div>
           </div>
           <div className="client-grid">
-            {OTHER_PROJECTS.map((p, i) => (
-              <a key={i} href={p.url} target="_blank" rel="noreferrer" className="client-card">
-                <span className="mono caps" style={{ color: "var(--ink-faint)" }}>
-                  {String(i + 1).padStart(2, "0")} · {p.kind}
-                </span>
-                <span className="serif" style={{ fontSize: 22, lineHeight: 1.25 }}>
-                  {p.name}
-                </span>
-                <span className="mono client-host">{hostOf(p.url)} ↗</span>
-              </a>
-            ))}
+            {OTHER_PROJECTS.map((p, i) => {
+              const body = (
+                <>
+                  <span className="mono caps" style={{ color: "var(--ink-faint)" }}>
+                    {String(i + 1).padStart(2, "0")} · {p.kind}
+                  </span>
+                  <span className="serif" style={{ fontSize: 22, lineHeight: 1.25 }}>
+                    {p.name}
+                  </span>
+                  <span className="mono client-host">{p.url ? `${hostOf(p.url)} ↗` : "Delivered · link retired"}</span>
+                </>
+              );
+              return p.url ? (
+                <a key={i} href={p.url} target="_blank" rel="noreferrer" className="client-card">
+                  {body}
+                </a>
+              ) : (
+                <div key={i} className="client-card is-static">
+                  {body}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -387,7 +397,7 @@ export default function ProjectsSection() {
         .client-card { display: flex; flex-direction: column; gap: 10px; min-height: 150px; padding: 20px;
           border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--paper-2);
           transition: background .2s ease, color .2s ease; }
-        .client-card:hover { background: var(--paper); color: var(--accent); }
+        .client-card:not(.is-static):hover { background: var(--paper); color: var(--accent); }
         .client-host { margin-top: auto; font-size: 11px; color: var(--ink-faint); overflow-wrap: anywhere; }
 
         @media (max-width: 1000px) {

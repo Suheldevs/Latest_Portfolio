@@ -1,0 +1,11 @@
+// Cloudflare Workers static-assets deploy → https://mohdsuhel.suhel-f75.workers.dev
+// Deploy with `npm run deploy` (needs `npx wrangler login` or CLOUDFLARE_API_TOKEN).
+{
+  "name": "mohdsuhel",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    // Client-side routes like /old resolve to index.html instead of 404.
+    "not_found_handling": "single-page-application"
+  }
+}
