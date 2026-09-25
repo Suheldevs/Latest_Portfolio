@@ -2,7 +2,7 @@
 
 Personal portfolio website of **Mohd Suhel**, a Full Stack Developer from Lucknow, India.
 
-**Live:** [https://mohdsuhel.netlify.app/](https://mohdsuhel.netlify.app/)
+**Live:** [https://mohdsuhel.suhel-f75.workers.dev/](https://mohdsuhel.suhel-f75.workers.dev/)
 
 ## About
 

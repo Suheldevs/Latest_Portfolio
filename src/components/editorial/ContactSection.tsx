@@ -47,7 +47,7 @@ const PROJECT_TYPES: Array<{ value: string; label: string }> = [
 const SOCIALS = [
   { label: "GitHub", handle: "@Suheldevs", href: "https://github.com/Suheldevs" },
   { label: "LinkedIn", handle: "in/mohd-suhel", href: "https://www.linkedin.com/in/mohd-suhel-4b2072257" },
-  { label: "Portfolio", handle: "mohdsuhel.netlify.app", href: "https://mohdsuhel.netlify.app/" },
+  { label: "Portfolio", handle: "mohdsuhel.suhel-f75.workers.dev", href: "https://mohdsuhel.suhel-f75.workers.dev/" },
   { label: "Email", handle: EMAIL, href: `mailto:${EMAIL}` },
 ];
 
@@ -203,7 +203,7 @@ export default function ContactSection() {
                       min-content — without it the whole grid floors at 345px
                       and pushes the page sideways under ~385px. */}
                   <span
-                    className="serif"
+                    className="serif social-handle"
                     style={{ fontStyle: "italic", fontSize: 19, minWidth: 0, overflowWrap: "anywhere" }}
                   >
                     {s.handle}
@@ -448,6 +448,7 @@ export default function ContactSection() {
         }
         @media (max-width: 480px) {
           .social-row { grid-template-columns: 84px 1fr auto !important; }
+          .social-handle { font-size: 16px !important; }
         }
       `}</style>
     </section>

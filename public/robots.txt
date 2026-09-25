@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://mohdsuhel.netlify.app/sitemap.xml
+Sitemap: https://mohdsuhel.suhel-f75.workers.dev/sitemap.xml
