@@ -2,9 +2,9 @@ import { scrollTo } from "@/components/editorial/Navigation";
 
 const LEDGER = [
   { n: "2+", label: "Years shipping production" },
+  { n: "4", label: "Marketplaces, one codebase" },
+  { n: "4", label: "Live products shipped" },
   { n: "8", label: "Live client sites" },
-  { n: "5", label: "Products built end to end" },
-  { n: "3", label: "AI-integrated systems" },
 ];
 
 const RESUME_URL =
@@ -105,8 +105,8 @@ export default function HeroSection() {
                 textWrap: "pretty",
               }}
             >
-              I build the systems a business runs on — HR platforms, CRMs, booking flows — and the AI
-              workflows and vector search that are starting to sit underneath them.
+              I build the systems a business runs on — marketplaces, CRMs, automation engines, booking flows —
+              and the LLM-backed semantic search that is starting to sit underneath them.
             </p>
 
             <div style={{ display: "flex", gap: 10, marginTop: 22, flexWrap: "wrap" }}>
@@ -145,7 +145,7 @@ export default function HeroSection() {
               <dt className="mono caps" style={{ color: "var(--ink-faint)" }}>
                 Focus
               </dt>
-              <dd style={{ margin: 0 }}>React · Next.js · React Native · Node · AI workflows</dd>
+              <dd style={{ margin: 0 }}>React · Next.js · React Native · Node · LLM search</dd>
 
               <dt className="mono caps" style={{ color: "var(--ink-faint)" }}>
                 Since

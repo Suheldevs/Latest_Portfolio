@@ -1,10 +1,10 @@
 import SectionLabel from "@/components/editorial/SectionLabel";
 
 const HIGHLIGHTS: Array<[string, string]> = [
-  ["Product ownership", "Four products taken from empty repo to production inside two years."],
-  ["AI integration", "AI-powered lesson engine in Quippy Lab; agent workflows and vector search."],
-  ["Mobile", "React Native apps with live classes, mobile check-in, and real-time progress."],
-  ["Multi-tenancy", "Workspace-scoped CRM where no tenant can reach another tenant's data."],
+  ["Multi-tenancy", "Four GreenBidz marketplaces served from one shared React and Node.js codebase."],
+  ["AI integration", "LLM-backed semantic search wired into buyer discovery and listing flows."],
+  ["Automation", "BullCRM's email engine and three drag-and-drop builders, built end to end."],
+  ["Access control", "JWT and attribute-based permissions governing every module in DSS CRM."],
 ];
 
 export default function AboutSection() {
@@ -58,8 +58,8 @@ export default function AboutSection() {
                 textWrap: "pretty",
               }}
             >
-              I build the kind of software a business actually runs on — HR platforms, CRMs, booking systems,
-              learning apps. Not landing pages. The sort of thing where someone's payroll, someone's appointment,
+              I build the kind of software a business actually runs on — marketplaces, CRMs, automation engines,
+              booking systems. Not landing pages. The sort of thing where someone's bid, someone's appointment,
               or someone's sales pipeline breaks if I get it wrong, and where the second year of use matters more
               than the launch week.
             </p>
@@ -73,21 +73,22 @@ export default function AboutSection() {
                 textWrap: "pretty",
               }}
             >
-              At Jamtech Technologies I'm building a multi-tenant CRM — lead capture and assignment, on-site
-              measurement that feeds straight into quoting, product catalogue, HR, digital assets. The interesting
-              constraint isn't the features, it's the isolation: <em>every query, socket event and API response is
-              scoped to a workspace</em>, because a CRM that leaks one client's leads into another's dashboard is
-              worse than no CRM at all.
+              At Jamtech Technologies I work on GreenBidz, a B2B bidding marketplace — bidding and offer flows,
+              seller and admin dashboards, Zoho CRM sync, and the LLM-backed semantic search behind buyer
+              discovery. The interesting constraint isn't the features, it's the sharing: <em>four tenant
+              marketplaces run on one React and Node.js codebase</em>, so every change has to hold for all of them
+              at once. Alongside it, React Native work on an AI learning app — quizzes, class scheduling and
+              school management.
             </p>
             <p
               className="serif"
               style={{ margin: 0, fontSize: 19, lineHeight: 1.65, fontWeight: 400, textWrap: "pretty" }}
             >
-              Before that, sixteen months at Code Crafter shipping four products solo — an HRMS with payroll and
-              leave approvals, Quippy Lab's AI language-learning platform with a React Native app, Shanya Scans
-              for medical test booking, and a marketing site with cookie-based lead capture — plus eight client
-              sites alongside. The AI work is where I'm pushing now: workflows, agent pipelines, and vector search
-              on top of the same MERN stack I already know cold.
+              Before that, sixteen months at Code Crafter building business platforms end to end — BullCRM's
+              email automation engine and its three drag-and-drop builders, DSS CRM's sales and HR modules behind
+              an attribute-based permission system, and Shanya Scans for diagnostics booking — plus eight client
+              sites alongside. The AI work is where I'm pushing now: LLM integration, semantic search and Qdrant
+              vector search on top of the same MERN stack I already know cold.
             </p>
 
             <div
