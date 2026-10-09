@@ -47,7 +47,6 @@ const PROJECT_TYPES: Array<{ value: string; label: string }> = [
 const SOCIALS = [
   { label: "GitHub", handle: "@Suheldevs", href: "https://github.com/Suheldevs" },
   { label: "LinkedIn", handle: "in/mohd-suhel", href: "https://www.linkedin.com/in/mohd-suhel-4b2072257" },
-  { label: "Portfolio", handle: "mohdsuhel.suhel-f75.workers.dev", href: "https://mohdsuhel.suhel-f75.workers.dev/" },
   { label: "Email", handle: EMAIL, href: `mailto:${EMAIL}` },
 ];
 

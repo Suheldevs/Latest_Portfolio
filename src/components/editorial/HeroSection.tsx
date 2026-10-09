@@ -2,12 +2,12 @@ import { scrollTo } from "@/lib/scroll";
 
 const LEDGER = [
   { n: "2+", label: "Years shipping production" },
-  { n: "4", label: "Marketplaces, one codebase" },
-  { n: "4", label: "Live products shipped" },
-  { n: "8", label: "Live client sites" },
+  { n: "12+", label: "Live projects" },
+  { n: "7+", label: "Products built end to end" },
+  { n: "5", label: "AI-integrated systems" },
 ];
 
-const RESUME_URL = "/Mohd_Suhel_Resume.pdf";
+const RESUME_URL = "https://drive.google.com/file/d/1KKTaFMJhwHWDI-yjMmxp5VNPKRTOYJd3/view";
 
 export default function HeroSection() {
   return (
@@ -34,7 +34,7 @@ export default function HeroSection() {
           }}
         >
           <div className="mono caps" style={{ color: "var(--ink-soft)" }}>
-            Portfolio · Vol. II · {new Date().getFullYear()}
+            Portfolio · Vol. I · {new Date().getFullYear()}
           </div>
           <div className="mono caps" style={{ color: "var(--ink-soft)" }}>
             <span
@@ -48,7 +48,7 @@ export default function HeroSection() {
                 verticalAlign: 1,
               }}
             />
-            Open to new work · April 2026
+            Open to new work · Apr 2026
           </div>
         </div>
 
@@ -104,8 +104,8 @@ export default function HeroSection() {
                 textWrap: "pretty",
               }}
             >
-              I build the systems a business runs on — marketplaces, CRMs, automation engines, booking flows —
-              and the LLM-backed semantic search that is starting to sit underneath them.
+              Two years shipping production apps on MERN and React Native — a four-marketplace bidding platform,
+              an email automation engine and LLM-backed semantic search.
             </p>
 
             <div style={{ display: "flex", gap: 10, marginTop: 22, flexWrap: "wrap" }}>

@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import SectionLabel from "@/components/editorial/SectionLabel";
 
 interface Project {
@@ -99,28 +99,8 @@ const PROJECTS: Project[] = [
     links: { live: "https://www.shanyascans.com/" },
   },
   {
-    id: "quippy-lab",
-    num: "05",
-    year: "2026",
-    title: "Quippy Lab",
-    kind: "Product · AI learning",
-    status: "Live",
-    shot: "/projects/quippy-lab.png",
-    role: "React Native · Jamtech",
-    metric: { n: "3", label: "modules — quizzes, scheduling, school management" },
-    blurb:
-      "An AI-powered learning platform for online learning centres — live classes, gamified lessons and a React Native app, all runnable under a school's own brand.",
-    lines: [
-      "React Native features and defect fixes across quizzes, class scheduling and school management modules.",
-      "Interactive quizzes and gamified lessons driving the core learning loop.",
-      "School management so a centre runs its own students, cohorts and teachers.",
-    ],
-    stack: ["React Native", "Next.js", "Node.js", "Expo"],
-    links: { live: "https://space.quippy-lab.com/" },
-  },
-  {
     id: "hrms",
-    num: "06",
+    num: "05",
     year: "2025",
     title: "HRMS",
     kind: "Product · HR platform",
@@ -198,7 +178,82 @@ function BrowserFrame({ project }: { project: Project }) {
   );
 }
 
+// Stacked-deck scroll: each case sticks under the nav and the next one slides over it.
+// Each card sits a little lower than the one before, so covered cards peek out as tabs.
+const STICK_TOP = 84;
+const STICK_STEP = 14;
+
+function useProjectStack() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = ref.current;
+    if (!root) return;
+    const cards = Array.from(root.querySelectorAll<HTMLElement>(".proj-case"));
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const desktop = window.matchMedia("(min-width: 901px)");
+    if (still.matches) return;
+    root.classList.add("is-animated");
+
+    // "Open" each case as it arrives
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        }),
+      { threshold: 0.12 },
+    );
+    cards.forEach((c) => io.observe(c));
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      cards.forEach((card, i) => {
+        const next = cards[i + 1];
+        let cover = 0;
+        if (desktop.matches && next) {
+          const bottom = card.getBoundingClientRect().top + card.offsetHeight;
+          cover = Math.min(1, Math.max(0, (bottom - next.getBoundingClientRect().top) / card.offsetHeight));
+        }
+        card.style.setProperty("--cover", cover.toFixed(3));
+      });
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    // A card taller than the viewport sticks once its bottom is in view, so nothing is hidden unread
+    const layout = () => {
+      cards.forEach((card, i) => {
+        const top = Math.min(STICK_TOP + i * STICK_STEP, window.innerHeight - card.offsetHeight - 24);
+        card.style.setProperty("--stick", `${top}px`);
+      });
+      schedule();
+    };
+
+    const ro = new ResizeObserver(layout);
+    cards.forEach((c) => ro.observe(c));
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", layout);
+    layout();
+
+    return () => {
+      io.disconnect();
+      ro.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", layout);
+      cancelAnimationFrame(frame);
+      root.classList.remove("is-animated");
+    };
+  }, []);
+
+  return ref;
+}
+
 export default function ProjectsSection() {
+  const stackRef = useProjectStack();
+
   return (
     <section
       id="projects"
@@ -221,7 +276,7 @@ export default function ProjectsSection() {
           ))}
         </nav>
 
-        <div>
+        <div ref={stackRef} className="proj-stack">
           {PROJECTS.map((p, idx) => (
             <article
               key={p.id}
@@ -358,6 +413,27 @@ export default function ProjectsSection() {
           scroll-margin-top: 80px; }
         .proj-case.flip .proj-media { order: 2; }
         .proj-media { position: sticky; top: 96px; }
+
+        /* Stacked deck: the next case slides over the one before it */
+        @media (min-width: 901px) {
+          .proj-stack .proj-case { position: sticky; top: var(--stick, 84px); background: var(--paper-2);
+            border-top: 1px solid var(--ink); border-bottom: 0; transform-origin: 50% 0;
+            transform: scale(calc(1 - var(--cover, 0) * .05)); }
+          .proj-stack .proj-case + .proj-case { box-shadow: 0 -28px 56px -36px rgba(26,24,21,.4); }
+          .proj-stack .proj-case > * { opacity: calc(1 - var(--cover, 0) * .6); }
+          .proj-stack .proj-media { position: static; }
+        }
+
+        /* Each case opens as it arrives */
+        .proj-stack.is-animated .proj-frame { clip-path: inset(0 0 100% 0);
+          transition: clip-path .9s cubic-bezier(.2,.7,.2,1), transform .35s ease, box-shadow .35s ease; }
+        .proj-stack.is-animated .proj-body > * { opacity: 0; transform: translateY(18px);
+          transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+        .proj-stack.is-animated .proj-case.is-in .proj-frame { clip-path: inset(0 0 0 0); }
+        .proj-stack.is-animated .proj-case.is-in .proj-body > * { opacity: 1; transform: none; }
+        ${[1, 2, 3, 4, 5, 6, 7, 8]
+          .map((n) => `.proj-stack.is-animated .proj-case.is-in .proj-body > :nth-child(${n}) { transition-delay: ${150 + n * 60}ms; }`)
+          .join("\n        ")}
 
         .proj-frame { border: 1px solid var(--ink); background: var(--paper); overflow: hidden;
           box-shadow: 0 1px 0 var(--rule), 0 24px 48px -28px rgba(26,24,21,.35);

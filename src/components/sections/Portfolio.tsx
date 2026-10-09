@@ -15,12 +15,20 @@ const projects = [
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
   },
   {
-    title: "Quippy Lab — AI Language Learning",
-    description: "AI-powered language learning platform with interactive quizzes and gamified lessons. React Native app with online live classes, school management, and real-time progress tracking.",
-    tags: ["React Native", "Expo", "Node.js", "AI"],
-    liveUrl: "",
+    title: "GreenBidz — B2B AI Bidding Marketplace",
+    description: "Multi-tenant B2B bidding marketplace — four tenant marketplaces on one shared React and Node.js codebase, with bidding and offer flows, seller dashboards, LLM-backed semantic search and Zoho CRM lead sync.",
+    tags: ["React", "Node.js", "Multi-tenant", "AI"],
+    liveUrl: "https://101lab.co/",
     githubUrl: "#",
-    image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&q=80"
+    image: liveScreenshot("https://101lab.co/")
+  },
+  {
+    title: "BullCRM — Business Automation Platform",
+    description: "Sales CRM built around email — an email automation engine, three drag-and-drop builders for email templates, landing pages and visual workflows, plus WhatsApp templates, broadcasts and trigger-based flows.",
+    tags: ["React", "Node.js", "Express", "MongoDB"],
+    liveUrl: "https://bullcrm.io/",
+    githubUrl: "#",
+    image: liveScreenshot("https://bullcrm.io/")
   },
   {
     title: "DSS Website & CRM",

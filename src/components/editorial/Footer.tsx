@@ -9,10 +9,7 @@ export default function Footer() {
           Mohd Suhel
         </div>
         <div className="mono caps" style={{ color: "var(--ink-faint)" }}>
-          © {new Date().getFullYear()} · Set in Fraunces & IBM Plex ·{" "}
-          <a href="/old" className="link-u tap-pad" style={{ color: "inherit" }}>
-            Previous edition
-          </a>
+          © {new Date().getFullYear()} · Set in Fraunces & IBM Plex
         </div>
         <a
           href="#top"

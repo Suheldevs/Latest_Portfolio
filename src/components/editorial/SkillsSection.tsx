@@ -59,7 +59,7 @@ const EDUCATION = [
   {
     degree: "B.Tech — Computer Science & Engineering",
     school: "Dr. A.P.J. Abdul Kalam Technical University, Lucknow",
-    period: "",
+    period: "2024 – Present",
     grade: "B.Tech",
   },
   {
